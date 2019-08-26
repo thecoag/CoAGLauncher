@@ -90,11 +90,6 @@ const SideBar = props => {
       </div>
       <hr />
       <div className={styles.instanceTitle}>
-        <h2>Bookmarked Servers</h2>
-        No server
-      </div>
-      <hr />
-      <div className={styles.instanceTitle}>
         <h2>Instance Overview</h2>
         {instanceData !== null ? (
           <div style={{ marginTop: 10 }}>
@@ -190,12 +185,6 @@ const SideBar = props => {
       <hr style={{ margin: 0 }} />
       <div className={styles.socialsContainer}>
         {/* eslint-disable */}
-        {/* <SocialIcon icon="twitter" url="https://twitter.com/gorilladevs" /> */}
-        <SocialIcon icon={faFacebook} url="https://facebook.com/gorilladevs" />
-        <SocialIcon
-          icon={faDiscord}
-          url="https://discordapp.com/invite/4cGYzen"
-        />
         <span className={styles.version}>
           <Link to={{ pathname: '/changelogs', state: { modal: true } }}>
             v{require('../../../../package.json').version}

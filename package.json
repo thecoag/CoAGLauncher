@@ -1,7 +1,7 @@
 {
-  "name": "gdlauncher",
-  "version": "0.11.15",
-  "description": "GDLauncher is simple, yet powerful Minecraft custom launcher with a strong focus on the user experience",
+  "name": "coaglauncher",
+  "version": "1.0.0",
+  "description": "CoAG Launcher is simple, yet powerful Minecraft custom launcher with a strong focus on the user experience",
   "keywords": [
     "minecraft",
     "launcher",
@@ -13,13 +13,13 @@
     "sass",
     "webpack"
   ],
-  "homepage": "https://github.com/gorilla-devs/GDLauncher",
+  "homepage": "https://github.com/thecoag/GDLauncher",
   "bugs": {
-    "url": "https://github.com/gorilla-devs/GDLauncher/issues"
+    "url": "https://github.com/thecoag/GDLauncher/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gorilla-devs/GDLauncher.git"
+    "url": "git+https://github.com/thecoag/GDLauncher.git"
   },
   "license": "MIT",
   "author": {
@@ -252,8 +252,8 @@
   "browserslist": "electron 1.6",
   "build": {
     "generateUpdatesFilesForAllChannels": true,
-    "productName": "GDLauncher",
-    "appId": "org.gorilladevs.GDLauncher",
+    "productName": "CoAGLauncher",
+    "appId": "ltd.coag.CoAGLauncher",
     "files": [
       "!node_modules",
       "app/splash.html",

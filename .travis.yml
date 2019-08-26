@@ -1,77 +1,77 @@
 matrix:
   include:
-    - os: osx
-      language: node_js
-      node_js:
-        - 10
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-    - os: linux
-      language: node_js
-      node_js:
-        - 10
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-multilib
-            - g++-8
-            - g++-multilib
-            - icnsutils
-            - graphicsmagick
-            - xz-utils
-            - xorriso
-            - rpm
-      before_install:
-        # This should fix https://github.com/travis-ci/travis-ci/issues/9630
-        - sudo chown -R travis:travis $HOME/.cache
-        - sudo chown -R travis:travis $TRAVIS_BUILD_DIR/node_modules
+  - os: osx
+    language: node_js
+    node_js:
+    - 10
+    env:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+  - os: linux
+    language: node_js
+    node_js:
+    - 10
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-multilib
+        - g++-8
+        - g++-multilib
+        - icnsutils
+        - graphicsmagick
+        - xz-utils
+        - xorriso
+        - rpm
+    before_install:
+    - sudo chown -R travis:travis $HOME/.cache
+    - sudo chown -R travis:travis $TRAVIS_BUILD_DIR/node_modules
 before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
-
+- rm -rf $HOME/.cache/electron-builder/wine
 cache:
   yarn: true
   directories:
-    - node_modules
-    - $(npm config get prefix)/lib/node_modules
-    - flow-typed
-    - $HOME/.cache/electron
-    - $HOME/.cache/electron-builder
-
+  - node_modules
+  - "$(npm config get prefix)/lib/node_modules"
+  - flow-typed
+  - "$HOME/.cache/electron"
+  - "$HOME/.cache/electron-builder"
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-8"; fi
-
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-8"; fi
 install:
-  - yarn
-  # On Linux, initialize "virtual display". See before_script
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      /sbin/start-stop-daemon \
-      --start \
-      --quiet \
-      --pidfile /tmp/custom_xvfb_99.pid \
-      --make-pidfile \
-      --background \
-      --exec /usr/bin/Xvfb \
-      -- :99 -ac -screen 0 1280x1024x16
-    else
-      :
-    fi
-
+- yarn
+- |
+  if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+    /sbin/start-stop-daemon \
+    --start \
+    --quiet \
+    --pidfile /tmp/custom_xvfb_99.pid \
+    --make-pidfile \
+    --background \
+    --exec /usr/bin/Xvfb \
+    -- :99 -ac -screen 0 1280x1024x16
+  else
+    :
+  fi
 before_script:
-  # On Linux, create a "virtual display". This allows browsers to work properly
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
-
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi
 script:
-  - yarn package-ci
-  # - yarn lint
-  # - yarn flow
-  # HACK: Temporarily ignore `yarn test` on linux
-  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn test; fi
-  # - yarn build-e2e
-  # - yarn test-e2e
+- yarn package-ci
+deploy:
+  provider: releases
+  skip_cleanup: true
+  draft: true
+  api_key:
+    secure: J8aqUstVNO4yBapbaSq9EjCVsqciH2t4AFq2RJu1M+3L5uEW2E6QHmTqiRUb4iFeKupNhLIE5W0Ea9EGFskAAdqUqdfRmw4N69ATkFPdlyYNrKdbL0Q2IbNEU1eixU2R0dpieWDABdSckm0mSSKtIuZ+YSrvhrnJB7ZNQvpZBhAfgizCcjqmqkkwicgv/ItnF0PbFSXa9B8qwcZOQE19RQ56kGJ97jDBjkNoN7zeffzWXAkWMquUQl85thjoxVxlTt2XdOLrcvZqFhPHfHhpxtBfZ/9GW25ooOtimZTUEb5jN4mw/9KTuUrlAHpuYgeUBntDlSc+2VNOnPaIup8nqnI0f19karmMTUUpsfcnRbklWVW6n/dFtbHC3PSIRpB/c7ES6rXbzRktYfKur2G6WpM2s5QRRgY8S/7p8NhNoXMqcDdwXKx5JNXHweP5osR5zjYK84BV7vCOATg9CjR9D8hzYz7jETfgHLCxlDNB/Gk6e0kvQjAXrzfTZ1Y/o0wYVu6h+VQPcW6nQ3/egjR/OsClS9xHidVwjXQ9H0fO0B51u0aGfvPklnZZ5MqZGSIfjuLSYfOWkwaPNsH2GqK+nr60nmei4wz9GET8V8AjdUeyGyKuVbRVJAKPc1ywVN+AQhuPtz8vcNuqFWQRdB91rymT4QMwM6UO+NPsMhW4yjc=
+  file: 
+   - release/latest-mac.yml
+   - release/latest-linux.yml
+   - release/latest.yml
+   - release/CoAGLauncher-win-setup.exe
+   - release/CoAGLauncher-linux-setup.AppImage
+   - release/CoAGLauncher-mac-setup.dmg
+  on:
+    repo: thecoag/GDLauncher
