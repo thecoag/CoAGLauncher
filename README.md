@@ -26,8 +26,13 @@ You can also:
 - **Davide Ceschia** - _Initial work_ 
 - [GorillaDevs](https://github.com/gorilla-devs)
 - **AzureZhen** - Forked and edited for the CoAG
+
 See also the list of [contributors](https://github.com/gorilla-devs/GDLauncher/contributors) who participated in this project.
 
 ## 🎓 License
 
-This project is licensed under the GNU GPL V3.0 - see the [LICENSE](LICENSE) file for details. The CoAG has no ownership of this code, all works belongs to [GorillaDevs](https://github.com/gorilla-devs) for the source. Go support them on [Patreon!](https://www.patreon.com/gorilladevs)
+This project is licensed under the GNU GPL V3.0 - see the [LICENSE](LICENSE) file for details. 
+
+The CoAG has no ownership of this code, all works belongs to [GorillaDevs](https://github.com/gorilla-devs) for the source. 
+
+Go support them on [Patreon!](https://www.patreon.com/gorilladevs)
