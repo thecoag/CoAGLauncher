@@ -126,7 +126,7 @@ class RouteDef extends Component<Props> {
         `${window.innerWidth}x${window.innerHeight}`
       );
       ga(this.props.uuid)
-        .screenview(this.props.location.pathname, 'GDLauncher', this.appVersion)
+        .screenview(this.props.location.pathname, 'CoAGLauncher', this.appVersion)
         .send();
     }
     if (

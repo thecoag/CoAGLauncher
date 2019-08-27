@@ -125,7 +125,7 @@ if (minimist(process.argv.slice(1)).i) {
     });
 
     mainWindow.loadURL(`file://${__dirname}/app.html`, {
-      userAgent: 'GDLauncher'
+      userAgent: 'CoAGLauncher'
     });
 
     // @TODO: Use 'ready-to-show' event
@@ -138,15 +138,15 @@ if (minimist(process.argv.slice(1)).i) {
 
 
       // Sets the DISCORD-RPC
-      const clientId = '555898932467597312';
+      const clientId = '612088869642567715';
       let rpc = new DiscordRPC.Client({ transport: 'ipc' });
       rpc.once('ready', () => {
         rpc.setActivity({
-          details: `Becoming a Gorilla`,
-          state: 'Grrrrrrrr',
+          details: `Becoming a Scrub`,
+          state: 'Scurb 4 Life',
           startTimestamp: Math.floor(Date.now() / 1000),
-          largeImageKey: 'default_big',
-          largeImageText: 'GDLauncher - A Custom Minecraft Launcher',
+          largeImageKey: 'sealcircle',
+          largeImageText: 'CoAG Launcher - A Custom Minecraft Launcher',
           instance: false,
         });
       });

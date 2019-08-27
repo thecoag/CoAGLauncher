@@ -13,13 +13,13 @@
     "sass",
     "webpack"
   ],
-  "homepage": "https://github.com/thecoag/GDLauncher",
+  "homepage": "https://github.com/thecoag/CoAGLauncher",
   "bugs": {
-    "url": "https://github.com/thecoag/GDLauncher/issues"
+    "url": "https://github.com/thecoag/CoAGLauncher/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thecoag/GDLauncher.git"
+    "url": "git+https://github.com/thecoag/CoAGLauncher.git"
   },
   "license": "MIT",
   "author": {
@@ -309,8 +309,8 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "gorilla-devs",
-      "repo": "GDLauncher",
+      "owner": "thecoag",
+      "repo": "CoAGLauncher",
       "private": false
     }
   },
@@ -339,5 +339,5 @@
       "git add"
     ]
   },
-  "productName": "GDLauncher"
+  "productName": "CoAGLauncher"
 }

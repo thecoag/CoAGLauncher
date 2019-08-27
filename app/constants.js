@@ -12,7 +12,7 @@ export const APPPATH = getAppPath();
 export const DATAPATH = path.join(
   process.env.APPDATA ||
     (electron.app || electron.remote.app).getPath('userData'),
-  'GDLauncher'
+  'CoAGLauncher'
 );
 export const CLASSPATH_DIVIDER_CHAR = platform() === WINDOWS ? ';' : ':';
 export const LAUNCHER_FOLDER = 'launcherData';
