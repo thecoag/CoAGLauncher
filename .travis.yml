@@ -80,4 +80,4 @@ deploy:
    - release/CoAGLauncher-linux-setup.AppImage
    - release/CoAGLauncher-mac-setup.dmg
   on:
-    repo: thecoag/GDLauncher
+    repo: thecoag/CoAGLauncher
